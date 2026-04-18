@@ -3,4 +3,6 @@ project(terrain_generation_c C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(terrain_generation_c main.c)
+add_executable(terrain_generation_c main.c
+        generation.c
+        generation.h)
