@@ -4,9 +4,10 @@
 
 #include "generation.h"
 
+#include <inttypes.h>
+#include <stdio.h>
 
 
-
-void diffusion_limited_aggregation(uint64_t width, uint64_t height, uint64_t matrix) {
+void diffusion_limited_aggregation(uint64_t width, uint64_t height, uint64_t matrix[height][width]) {
 
 }

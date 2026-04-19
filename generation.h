@@ -13,6 +13,6 @@
  * @param height Height of the matrix
  * @param matrix Empty stack-allocated matrix to apply DLA to
  */
-void diffusion_limited_aggregation(uint64_t width, uint64_t height, uint64_t matrix);
+void diffusion_limited_aggregation(uint64_t width, uint64_t height, uint64_t matrix[height][width]);
 
 #endif //TERRAIN_GENERATION_C_GENERATION_H

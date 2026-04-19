@@ -1,6 +1,9 @@
+#include <stdint.h>
 #include <stdio.h>
+#include <inttypes.h>
+#include "generation.h"
 
 int main(void) {
-    printf("Hello, World!\n");
-    return 0;
+    uint64_t matrix[100][100] = {0};
+    diffusion_limited_aggregation(100, 100, matrix);
 }
