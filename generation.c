@@ -3,8 +3,6 @@
 //
 
 #include "generation.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]) {
     for (int k = 0; k < 20; ++k) {
@@ -35,9 +33,9 @@ void diffusion_limited_aggregation(const uint32_t width, const uint32_t height, 
 
         // Loop until attaching to something
         while (matrix[y_coord][x_coord] == 0) {
-            const uint8_t up = (y_coord + 1 < height) ? matrix[y_coord + 1][x_coord] : 0;
+            const uint8_t up = (y_coord > 0) ? matrix[y_coord - 1][x_coord] : 0;
             const uint8_t right = (x_coord + 1 < width) ? matrix[y_coord][x_coord + 1] : 0;
-            const uint8_t down = (y_coord > 0) ? matrix[y_coord - 1][x_coord] : 0;
+            const uint8_t down = (y_coord + 1 < height) ? matrix[y_coord + 1][x_coord] : 0;
             const uint8_t left = (x_coord > 0) ? matrix[y_coord][x_coord - 1] : 0;
 
             if (up == 0 && right == 0 && down == 0 && left == 0) {

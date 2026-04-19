@@ -6,10 +6,12 @@
 #define TERRAIN_GENERATION_C_GENERATION_H
 
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 
 
-void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width])
+void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]);
 
 /**
  *
