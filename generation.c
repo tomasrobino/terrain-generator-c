@@ -4,6 +4,18 @@
 
 #include "generation.h"
 
+
+void binary_colors_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]) {
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            if (matrix[i][j] != 0) {
+                matrix[i][j] = 255;
+            }
+        }
+    }
+}
+
+
 void save_pgm(const char *filename, uint32_t width, uint32_t height, uint8_t matrix[height][width]) {
     FILE *f = fopen(filename, "wb");
     if (!f) return;
