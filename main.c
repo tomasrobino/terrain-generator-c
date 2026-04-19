@@ -3,5 +3,5 @@
 
 int main(void) {
     uint8_t matrix[20][20] = {0};
-    diffusion_limited_aggregation(20, 20, matrix, 10);
+    diffusion_limited_aggregation(20, 20, matrix, 100);
 }

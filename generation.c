@@ -8,7 +8,24 @@ void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]
     for (int k = 0; k < 20; ++k) {
         printf("[");
         for (int j = 0; j < 20; ++j) {
-            printf("%d, ", matrix[k][j]);
+            switch (matrix[k][j]) {
+                case 1:
+                    printf("\033[31m%d\033[0m, ", matrix[k][j]);
+                    break;
+                case 2:
+                    printf("\033[32m%d\033[0m, ", matrix[k][j]);
+                    break;
+                case 3:
+                    printf("\033[33m%d\033[0m, ", matrix[k][j]);
+                    break;
+                case 4:
+                    printf("\033[34m%d\033[0m, ", matrix[k][j]);
+                    break;
+                case 5:
+                    printf("\033[35m%d\033[0m, ", matrix[k][j]);
+                    break;
+                default: printf("%d, ", matrix[k][j]);
+            }
         }
         printf("],\n");
     }
