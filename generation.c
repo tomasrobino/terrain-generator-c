@@ -4,10 +4,24 @@
 
 #include "generation.h"
 
+void save_pgm(const char *filename, uint32_t width, uint32_t height, uint8_t matrix[height][width]) {
+    FILE *f = fopen(filename, "wb");
+    if (!f) return;
+
+    // Header
+    fprintf(f, "P5\n%d %d\n255\n", width, height);
+
+    // Raw pixel data
+    fwrite(matrix, sizeof(unsigned char), width * height, f);
+
+    fclose(f);
+}
+
+
 void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]) {
-    for (int k = 0; k < 20; ++k) {
+    for (int k = 0; k < height; ++k) {
         printf("[");
-        for (int j = 0; j < 20; ++j) {
+        for (int j = 0; j < width; ++j) {
             switch (matrix[k][j]) {
                 case 1:
                     printf("\033[31m%d\033[0m, ", matrix[k][j]);
