@@ -4,10 +4,25 @@
 
 #include "generation.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]) {
+    for (int k = 0; k < 20; ++k) {
+        printf("[");
+        for (int j = 0; j < 20; ++j) {
+            printf("%d, ", matrix[k][j]);
+        }
+        printf("],\n");
+    }
+    printf("--------------------------------\n\n\n");
+}
+
 
 void diffusion_limited_aggregation(const uint32_t width, const uint32_t height, uint8_t matrix[height][width], const uint32_t pixel_amount) {
     // Root, 5 means no attachment direction
-    matrix[arc4random_uniform(height)][arc4random_uniform(width)] = 5;
+    uint8_t h = arc4random_uniform(height);
+    uint8_t w = arc4random_uniform(width);
+    matrix[h][w] = 5;
 
     for (uint32_t i = 1; i < pixel_amount; ++i) {
         uint32_t y_coord = arc4random_uniform(height);
@@ -20,15 +35,34 @@ void diffusion_limited_aggregation(const uint32_t width, const uint32_t height, 
 
         // Loop until attaching to something
         while (matrix[y_coord][x_coord] == 0) {
-            const uint8_t up = matrix[y_coord+1][x_coord];
-            const uint8_t right = matrix[y_coord][x_coord+1];
-            const uint8_t down = matrix[y_coord-1][x_coord];
-            const uint8_t left = matrix[y_coord][x_coord-1];
-
+            const uint8_t up = (y_coord + 1 < height) ? matrix[y_coord + 1][x_coord] : 0;
+            const uint8_t right = (x_coord + 1 < width) ? matrix[y_coord][x_coord + 1] : 0;
+            const uint8_t down = (y_coord > 0) ? matrix[y_coord - 1][x_coord] : 0;
+            const uint8_t left = (x_coord > 0) ? matrix[y_coord][x_coord - 1] : 0;
 
             if (up == 0 && right == 0 && down == 0 && left == 0) {
                 // 1 up, 2 right, 3 down, 4 left
-                const uint8_t direction = arc4random_uniform(4) + 1;
+                uint8_t possible_directions[4];
+                uint8_t direction_count = 0;
+
+                if (y_coord + 1 < height) {
+                    possible_directions[direction_count++] = 1;
+                }
+                if (x_coord + 1 < width) {
+                    possible_directions[direction_count++] = 2;
+                }
+                if (y_coord > 0) {
+                    possible_directions[direction_count++] = 3;
+                }
+                if (x_coord > 0) {
+                    possible_directions[direction_count++] = 4;
+                }
+
+                if (direction_count == 0) {
+                    return;
+                }
+
+                const uint8_t direction = possible_directions[arc4random_uniform(direction_count)];
                 switch (direction) {
                     case 1:
                         y_coord++;
@@ -42,7 +76,8 @@ void diffusion_limited_aggregation(const uint32_t width, const uint32_t height, 
                     case 4:
                         x_coord--;
                         break;
-                    default: return;
+                    default:
+                        return;
                 }
             } else {
                 // Fixing pixel
@@ -57,5 +92,6 @@ void diffusion_limited_aggregation(const uint32_t width, const uint32_t height, 
                 }
             }
         }
+        print_matrix(width, height, matrix);
     }
 }

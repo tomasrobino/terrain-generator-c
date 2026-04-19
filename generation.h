@@ -7,6 +7,10 @@
 
 #include <stdint.h>
 
+
+
+void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width])
+
 /**
  *
  * @param width Width of the matrix

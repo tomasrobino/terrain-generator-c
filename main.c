@@ -1,7 +1,8 @@
 #include <stdint.h>
+#include <stdio.h>
 #include "generation.h"
 
 int main(void) {
-    uint8_t matrix[100][100] = {0};
-    diffusion_limited_aggregation(100, 100, matrix, 100);
+    uint8_t matrix[20][20] = {0};
+    diffusion_limited_aggregation(20, 20, matrix, 10);
 }
