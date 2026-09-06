@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void binary_colors_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]);
-
+void binary_colors_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width], uint8_t new_matrix[height][width]);
+void direction_colors_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width], uint8_t matrix_3d[height][width][3]);
 void save_pgm(const char *filename, uint32_t width, uint32_t height, uint8_t matrix[height][width]);
 
 void print_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]);

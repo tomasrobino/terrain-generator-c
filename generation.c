@@ -5,11 +5,52 @@
 #include "generation.h"
 
 
-void binary_colors_matrix(uint32_t width, uint32_t height, uint8_t matrix[height][width]) {
+void binary_colors_matrix(const uint32_t width, const uint32_t height, uint8_t matrix[height][width], uint8_t new_matrix[height][width]) {
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {
             if (matrix[i][j] != 0) {
-                matrix[i][j] = 255;
+                new_matrix[i][j] = 255;
+            } else new_matrix[i][j] = 0;
+        }
+    }
+}
+
+void direction_colors_matrix(const uint32_t width, const uint32_t height, uint8_t matrix[height][width], uint8_t matrix_3d[height][width][3]) {
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            switch (matrix[i][j]) {
+                case 1: // up
+                    matrix_3d[i][j][0] = 255;
+                    matrix_3d[i][j][1] = 234;
+                    matrix_3d[i][j][2] = 0;
+                    break;
+                case 2: // right
+                    matrix_3d[i][j][0] = 21;
+                    matrix_3d[i][j][1] = 0;
+                    matrix_3d[i][j][2] = 255;
+                    break;
+                case 3: // down
+                    matrix_3d[i][j][0] = 255;
+                    matrix_3d[i][j][1] = 0;
+                    matrix_3d[i][j][2] = 17;
+                    break;
+                case 4: // left
+                    matrix_3d[i][j][0] = 255;
+                    matrix_3d[i][j][1] = 255;
+                    matrix_3d[i][j][2] = 255;
+                    break;
+                case 5: // root
+                    matrix_3d[i][j][0] = 255;
+                    matrix_3d[i][j][1] = 234;
+                    matrix_3d[i][j][2] = 0;
+                    break;
+                default: // nothing
+                    matrix_3d[i][j][0] = 0;
+                    matrix_3d[i][j][1] = 0;
+                    matrix_3d[i][j][2] = 0;
+                    if (matrix[i][j] != 0) {
+                        printf("x: %d, y: %d, value: %d\n", i, j, matrix[i][j]);
+                    }
             }
         }
     }
