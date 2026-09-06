@@ -20,37 +20,37 @@ void direction_colors_matrix(const uint32_t width, const uint32_t height, uint8_
         for (int j = 0; j < width; ++j) {
             switch (matrix[i][j]) {
                 case 1: // up
-                    matrix_3d[i][j][0] = 255;
-                    matrix_3d[i][j][1] = 234;
-                    matrix_3d[i][j][2] = 0;
+                    matrix_3d[i][j][0] = 230;
+                    matrix_3d[i][j][1] = 16;
+                    matrix_3d[i][j][2] = 16;
                     break;
                 case 2: // right
-                    matrix_3d[i][j][0] = 21;
-                    matrix_3d[i][j][1] = 0;
-                    matrix_3d[i][j][2] = 255;
+                    matrix_3d[i][j][0] = 7;
+                    matrix_3d[i][j][1] = 230;
+                    matrix_3d[i][j][2] = 18;
                     break;
                 case 3: // down
                     matrix_3d[i][j][0] = 255;
-                    matrix_3d[i][j][1] = 0;
-                    matrix_3d[i][j][2] = 17;
-                    break;
-                case 4: // left
-                    matrix_3d[i][j][0] = 255;
-                    matrix_3d[i][j][1] = 255;
-                    matrix_3d[i][j][2] = 255;
-                    break;
-                case 5: // root
-                    matrix_3d[i][j][0] = 255;
-                    matrix_3d[i][j][1] = 234;
+                    matrix_3d[i][j][1] = 208;
                     matrix_3d[i][j][2] = 0;
                     break;
-                default: // nothing
+                case 4: // left
+                    matrix_3d[i][j][0] = 0;
+                    matrix_3d[i][j][1] = 28;
+                    matrix_3d[i][j][2] = 186;
+                    break;
+                case 5: // root
+                    matrix_3d[i][j][0] = 186;
+                    matrix_3d[i][j][1] = 0;
+                    matrix_3d[i][j][2] = 177;
+                    break;
+                case 0: // nothing
                     matrix_3d[i][j][0] = 0;
                     matrix_3d[i][j][1] = 0;
                     matrix_3d[i][j][2] = 0;
-                    if (matrix[i][j] != 0) {
-                        printf("x: %d, y: %d, value: %d\n", i, j, matrix[i][j]);
-                    }
+                    break;
+                default:
+                    printf("x: %d, y: %d, value: %d\n", i, j, matrix[i][j]);
             }
         }
     }
